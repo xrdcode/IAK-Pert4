@@ -86,6 +86,16 @@
             android:layout_marginTop="10dp"
             />
 
+        <Button
+            android:id="@+id/favBtn"
+            android:text="favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            />
+
 
     </RelativeLayout>
 

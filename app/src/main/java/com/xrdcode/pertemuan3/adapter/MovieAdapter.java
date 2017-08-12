@@ -43,7 +43,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.AdapterHolde
         holder.movieOverview.setText(movieList.get(position).overview);
         Picasso.with(mContext).load(MovieHelper.MOVIE_POSTER_URL + movieList.get(position).poster_path).into(holder.movieImg);
 
-        holder.movieImg.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, movieList.get(position).title, Toast.LENGTH_SHORT).show();

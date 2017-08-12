@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 GsonBuilder gsonBuilder = new GsonBuilder();
                 Gson gson = gsonBuilder.create();
                 movie = gson.fromJson(response, Movies.class);
-                movieAdapter = new MovieAdapter(MainActivity.this, movie.results);
+                movieAdapter = new MovieAdapter(getApplicationContext(), movie.results);
                 recyclerView.setAdapter(movieAdapter);
             }
         }, new Response.ErrorListener() {

@@ -1,6 +1,7 @@
 package com.xrdcode.pertemuan3.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+import com.xrdcode.pertemuan3.MovieDetailActivity;
 import com.xrdcode.pertemuan3.R;
 import com.xrdcode.pertemuan3.helper.MovieHelper;
 import com.xrdcode.pertemuan3.model.Movies;
@@ -46,7 +48,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.AdapterHolde
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, movieList.get(position).title, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, MovieDetailActivity.class);
+                intent.putExtra("id", movieList.get(position).id);
+                mContext.startActivity(intent);
             }
         });
     }

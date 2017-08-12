@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        linearLayoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         apiUrl = MovieHelper.MOVIE_URL + "popular" + "?api_key=" + MovieHelper.API_KEY;
         JsonParser(apiUrl);
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 GsonBuilder gsonBuilder = new GsonBuilder();
                 Gson gson = gsonBuilder.create();
                 movie = gson.fromJson(response, Movies.class);
-                movieAdapter = new MovieAdapter(getApplicationContext(), movie.results);
+                movieAdapter = new MovieAdapter(MainActivity.this, movie.results);
                 recyclerView.setAdapter(movieAdapter);
             }
         }, new Response.ErrorListener() {

@@ -1,5 +1,6 @@
 package com.xrdcode.pertemuan3.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ public class Movies
     public int total_pages;
     public List<Result> results;
 
-    public class Result
+    public class Result implements Serializable
     {
         public int vote_count;
         public int id;

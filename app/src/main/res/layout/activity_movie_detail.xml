@@ -17,6 +17,13 @@
             android:background="@color/abuAbu"
             />
         <ImageView
+            android:id="@+id/overlay"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@android:color/white"
+            android:alpha="0.5"
+            />
+        <ImageView
             android:id="@+id/poster"
             android:layout_width="100dp"
             android:layout_height="125dp"
@@ -29,8 +36,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Title"
+            android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
             />

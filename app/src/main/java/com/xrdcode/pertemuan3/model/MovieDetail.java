@@ -1,12 +1,13 @@
 package com.xrdcode.pertemuan3.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by reysd on 12/08/2017.
  */
 
-public class MovieDetail
+public class MovieDetail implements Serializable
 {
     public boolean adult;
     public String backdrop_path;

@@ -14,7 +14,7 @@ public class Movies
     public int total_pages;
     public List<Result> results;
 
-    public class Result implements Serializable
+    public static class Result implements Serializable
     {
         public int vote_count;
         public int id;

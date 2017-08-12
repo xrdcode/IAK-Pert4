@@ -2,6 +2,7 @@ package com.xrdcode.pertemuan3.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.AdapterHolde
 
     private Context mContext;
     private List<Movies.Result> movieList;
+    private SharedPreferences pref;
 
     public MovieAdapter(Context mContext, List<Movies.Result> movieList) {
         this.mContext = mContext;
@@ -48,8 +50,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.AdapterHolde
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pref = mContext.getSharedPreferences("PASSING_ID", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putInt("id", movieList.get(position).id);
+                editor.commit();
                 Intent intent = new Intent(mContext, MovieDetailActivity.class);
-                intent.putExtra("id", movieList.get(position).id);
+                //intent.putExtra("id", movieList.get(position).id);
                 mContext.startActivity(intent);
             }
         });

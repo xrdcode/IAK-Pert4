@@ -1,10 +1,13 @@
 package com.xrdcode.pertemuan3;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Movie;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.picasso.Picasso;
 import com.xrdcode.pertemuan3.adapter.MovieAdapter;
+import com.xrdcode.pertemuan3.database.DatabaseHandler;
 import com.xrdcode.pertemuan3.helper.MovieHelper;
 import com.xrdcode.pertemuan3.model.MovieDetail;
 import com.xrdcode.pertemuan3.model.Movies;
@@ -30,6 +34,8 @@ public class MovieDetailActivity extends AppCompatActivity {
     TextView title, rating, overview, genre;
     ImageView poster, backdrop;
     MovieDetail movieDetail;
+    Button btnFav;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +49,27 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         poster = (ImageView) findViewById(R.id.poster);
         backdrop = (ImageView)findViewById(R.id.backdrop);
-        Intent intent = getIntent();
-        int id = intent.getIntExtra("id", 0);
+
+        btnFav = (Button) findViewById(R.id.favBtn);
+
+        btnFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseHandler databaseHandler = new DatabaseHandler(MovieDetailActivity.this);
+                if(databaseHandler.checkFavorite(movieDetail)) {
+                    databaseHandler.unFavorite(movieDetail);
+                } else {
+                    databaseHandler.setFavourite(movieDetail);
+                }
+            }
+        });
+
+
+        //Intent intent = getIntent();
+        //int id = intent.getIntExtra("id", 0);
+
+        pref = getSharedPreferences("PASSING_ID", MODE_PRIVATE);
+        int id = pref.getInt("id", 0);
         String apiUrl = MovieHelper.MOVIE_URL + id + "?api_key=" + MovieHelper.API_KEY;
         JsonParser(apiUrl);
     }
